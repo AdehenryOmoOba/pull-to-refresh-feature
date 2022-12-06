@@ -1,18 +1,32 @@
 import './App.css'
 import { usePullToRefresh } from './utilities/usePullToRefresh'
 
+
 function App() {
-  
-  const pullChange = usePullToRefresh()
+
+  const {pullChange, spinnerContainerRef} = usePullToRefresh()
+
+  const spinnerStyle = {
+    marginRight: "-2px",
+    display: "block",
+    backgroundRepeatY: "initial",
+    backgroundRepeatX: "initial",
+    backgroundColor: "transparent",
+    animationPlayState: "paused",
+    transform: `rotate(${pullChange}deg)`
+  }
+
+
   
   return (
-    <div className="App bg-green-300 h-full w-full grid place-content-center relative">
-      <div className="grid place-content-center absolute inset-x-0 -top-10" style={{marginTop: pullChange / 3 || ""}}>
-        <div className="">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" style={{transform: `rotate(${pullChange}deg)`}}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+    <div className="App bg-[#a6ffbd] h-full w-full grid place-content-center relative">
+      <div className="grid place-content-center absolute inset-x-0 spinnerYAxis" style={{marginTop: pullChange / 3 || ""}} ref={spinnerContainerRef}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="131px" height="131px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style={spinnerStyle}>
+          <g transform="matrix(1,0,0,1,0,0)" style={{transform: "matrix(1, 0, 0, 1, 0, 0)"}}>
+          <path d="M50 40A10 10 0 1 0 56.73012513509773 42.6036890502139" fill="none" stroke="#e15b64" strokeWidth={4}></path>
+          <path d="M49 35L49 45L54 40L49 35" fill="#e15b64"></path>
+          </g>
           </svg>
-        </div>
       </div>
       <div>
         <h5>Pull down to refresh!</h5>

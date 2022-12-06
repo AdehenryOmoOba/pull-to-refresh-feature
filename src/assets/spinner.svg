@@ -1,0 +1,6 @@
+    <svg xmlns="http://www.w3.org/2000/svg" width="131px" height="131px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style={spinnerStyle}>
+          <g transform="matrix(1,0,0,1,0,0)" style={{transform: "matrix(1, 0, 0, 1, 0, 0)"}}>
+          <path d="M50 40A10 10 0 1 0 56.73012513509773 42.6036890502139" fill="none" stroke="#e15b64" strokeWidth={4}></path>
+          <path d="M49 35L49 45L54 40L49 35" fill="#e15b64"></path>
+          </g>
+          </svg>

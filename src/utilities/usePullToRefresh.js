@@ -1,8 +1,9 @@
-import { useEffect,useState } from 'react'
+import { useEffect,useRef,useState } from 'react'
 
 export const  usePullToRefresh = () => {
   const [startPoint, setStartPoint] = useState(0)
   const [pullChange, setPullChange] = useState(0)
+  const spinnerContainerRef =  useRef(null)
 
   useEffect(() => {
     window.addEventListener("touchstart", pullStart)
@@ -27,17 +28,21 @@ export const  usePullToRefresh = () => {
     setPullChange(pullLength)
   }
 
-  const pullEnd = (e) => {
+  const pullEnd = () => {
     setStartPoint(0)
     setPullChange(0)
     if(pullChange > 220) iniLoading()
   }
 
   const iniLoading = () => {
+    spinnerContainerRef.current.classList.add("animate-spin")
+    spinnerContainerRef.current.classList.remove("spinnerYAxis")
     setTimeout(() => {
+    spinnerContainerRef.current.classList.remove("animate-spin")
+    spinnerContainerRef.current.classList.add("spinnerYAxis")
       window.location.reload()
-    }, 1000);
+    }, 5000);
   }
 
-  return pullChange
+  return {pullChange, spinnerContainerRef}
 }

@@ -6,6 +6,6 @@
   text-align: center;
   font-size: 3.2rem;
 }
-.loading{
-  margin-top: 0;
+.spinnerYAxis {
+  transform: translateY(-9rem);
 }
